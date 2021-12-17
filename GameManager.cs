@@ -52,61 +52,7 @@ public class GameManager : MonoBehaviour
     public GameObject dungeonLobbyCancle;
     public GameObject dungeonLobbyStop;
 
-    int day = 0;
-    int newDay = 1;
-    bool charContractListButton = true;
-    int money;
-    int MaxcharList = 20;
-    int currentList = 0;
-    int curingPageNum = 0;
-    int ManagementPageNum = 0;
-    double newHunterPosX = -4.6;
-    double newHunterPosY;
-    bool[] charContractedList = new bool[8];
-    public float speed;
-    bool fight = false;
-    public int power = 0;
-    public int monsterHp = 0;
-    public int monsterPower = 0;
-    public bool targetOn = false;
-    public float attackCoolTime = 0;
-    int monsterCount = 0;
-    int huntedMonsterNum = 0;
-    int mc = 0;
-    int exp = 0;
-    public int selectedDungeonHunterListNum;
-    public bool dungeon = false;
-    public int dungeonHunterHp;
-    public float randtime1 = 2;
-    public float randtime2 = 2;
-    public float randtime3 = 2;
-    public float randtime4 = 2;
-
-    float randX1 = 0;
-    float randY1 = 0;
-    bool isMove1 = false;
-
-    float randX2 = 0;
-    float randY2 = 0;
-    bool isMove2 = false;
-
-    float randX3 = 0;
-    float randY3 = 0;
-    bool isMove3 = false;
-
-    float randX4 = 0;
-    float randY4 = 0;
-    bool isMove4 = false;
-
-    bool isUManagementOpen = true;
-    bool isUCareOpen = true;
-    bool isUComtractOpen = true;
-    bool isDLOpen = true;
-
-    public bool[] hunterSelected = new bool[4] { false, false, false, false };
-    public int hunterSelectedNum;
-
-
+ 
     List<HunterData> hunterList = new List<HunterData>();
     HunterData[] dungeonHunterList = new HunterData[4];
     HunterData[] dungeonHunterUnitList = new HunterData[4];
@@ -156,8 +102,62 @@ public class GameManager : MonoBehaviour
     public Image[] dungenUnitSelectCharPosition;
     public Text[] dungenUnitSelectCharContractDday;
 
+    int day = 0;
+    int newDay = 1;
+    bool charContractListButton = true;
+    int money;
+    int MaxcharList = 20;
+    int currentList = 0;
+    int curingPageNum = 0;
+    int ManagementPageNum = 0;
+    double newHunterPosX = -4.6;
+    double newHunterPosY;
+    bool[] charContractedList = new bool[8];
+    public float speed;
+    bool fight = false;
+    public int power = 0;
+    public int monsterHp = 0;
+    public int monsterPower = 0;
+    public bool targetOn = false;
+    public float attackCoolTime = 0;
+    int monsterCount = 0;
+    int huntedMonsterNum = 0;
+    int mc = 0;
+    int exp = 0;
+    public int selectedDungeonHunterListNum;
+    public bool dungeon = false;
+    public int dungeonHunterHp;
+    public float randtime1 = 2;
+    public float randtime2 = 2;
+    public float randtime3 = 2;
+    public float randtime4 = 2;
 
-   
+    float randX1 = 0;
+    float randY1 = 0;
+    bool isMove1 = false;
+
+    float randX2 = 0;
+    float randY2 = 0;
+    bool isMove2 = false;
+
+    float randX3 = 0;
+    float randY3 = 0;
+    bool isMove3 = false;
+
+    float randX4 = 0;
+    float randY4 = 0;
+    bool isMove4 = false;
+
+    bool isUManagementOpen = false;
+    bool isUCareOpen = false;
+    bool isUComtractOpen = false;
+    bool isDLOpen = false;
+
+    public bool[] hunterSelected = new bool[4] { false, false, false, false };
+    public int hunterSelectedNum;
+
+
+
 
 
     // Start is called before the first frame update
@@ -204,7 +204,8 @@ public class GameManager : MonoBehaviour
                     case 0:
                         if (lobbyChaList[i] == null)
                         {
-                            lobbyChaList[i] = Instantiate(CharacterList.myHunterList[i], new Vector3(-2.8f, 0.6f, 0), new Quaternion(0, 180, 0, 0));
+                            lobbyChaList[i] = Instantiate(CharacterList.myHunterList[i], 
+                                new Vector3(-2.8f, 0.6f, 0), new Quaternion(0, 180, 0, 0));
                         }
                         randtime1 -= Time.deltaTime;
                         
@@ -216,17 +217,15 @@ public class GameManager : MonoBehaviour
                             isMove1 = (Random.value > 0.5f);
                             if (isMove1)
                             {
-                                Debug.Log(isMove1);
+                               
                                 if (randX1<=0)
                                 {
-                                    Debug.Log(randX1);
-                                    Debug.Log(randY1);
+                                    
                                     lobbyChaList[i].transform.rotation = Quaternion.Euler(0, 0, 0);
                                 }
                                 else
                                 {
-                                    Debug.Log(randX1);
-                                    Debug.Log(randY1);
+                                    
                                     lobbyChaList[i].transform.rotation = Quaternion.Euler(0, 180, 0);
                                 }                             
                                 lobbyChaList[i].Walk();
@@ -250,7 +249,8 @@ public class GameManager : MonoBehaviour
                             else if (y <= -6.3)
                                 randY1 = 1;
 
-                            lobbyChaList[i].gameObject.transform.Translate(new Vector3(randX1, randY1, 0) * 0.3f * Time.deltaTime);
+                            lobbyChaList[i].gameObject.transform.Translate(new Vector3
+                                (randX1, randY1, 0) * 0.3f * Time.deltaTime);
                         }
                         else
                         {
@@ -273,17 +273,15 @@ public class GameManager : MonoBehaviour
                             isMove2 = (Random.value > 0.5f);
                             if (isMove2)
                             {
-                                Debug.Log(isMove2);
+                                
                                 if (randX1 <= 0)
                                 {
-                                    Debug.Log(randX2);
-                                    Debug.Log(randY2);
+             
                                     lobbyChaList[i].transform.rotation = Quaternion.Euler(0, 0, 0);
                                 }
                                 else
                                 {
-                                    Debug.Log(randX2);
-                                    Debug.Log(randY2);
+                                    
                                     lobbyChaList[i].transform.rotation = Quaternion.Euler(0, 180, 0);
                                 }
                                 lobbyChaList[i].Walk();
@@ -329,17 +327,15 @@ public class GameManager : MonoBehaviour
                             isMove3 = (Random.value > 0.5f);
                             if (isMove3)
                             {
-                                Debug.Log(isMove1);
+                           
                                 if (randX3 <= 0)
                                 {
-                                    Debug.Log(randX3);
-                                    Debug.Log(randY3);
+                                    
                                     lobbyChaList[i].transform.rotation = Quaternion.Euler(0, 0, 0);
                                 }
                                 else
                                 {
-                                    Debug.Log(randX3);
-                                    Debug.Log(randY3);
+                                   
                                     lobbyChaList[i].transform.rotation = Quaternion.Euler(0, 180, 0);
                                 }
                                 lobbyChaList[i].Walk();
@@ -385,17 +381,15 @@ public class GameManager : MonoBehaviour
                             isMove4 = (Random.value > 0.5f);
                             if (isMove4)
                             {
-                                Debug.Log(isMove4);
+                          
                                 if (randX4 <= 0)
                                 {
-                                    Debug.Log(randX4);
-                                    Debug.Log(randY4);
+                                   
                                     lobbyChaList[i].transform.rotation = Quaternion.Euler(0, 0, 0);
                                 }
                                 else
                                 {
-                                    Debug.Log(randX4);
-                                    Debug.Log(randY4);
+                                    
                                     lobbyChaList[i].transform.rotation = Quaternion.Euler(0, 180, 0);
                                 }
                                 lobbyChaList[i].Walk();
@@ -436,7 +430,19 @@ public class GameManager : MonoBehaviour
             {
                 for (int i = 0; i < CharacterList.hunterNum; i++)
                 {
+                    if (i > 3)
+                        i = 3;
                     lobbyChaList[i].gameObject.SetActive(false);
+                }
+            }
+        }
+        else
+        {
+            if (CharacterList.hunterNum != 0)
+            {
+                for (int i = 0; i < CharacterList.hunterNum; i++)
+                {
+                    lobbyChaList[i].gameObject.SetActive(true);
                 }
             }
         }
@@ -1041,6 +1047,7 @@ public class GameManager : MonoBehaviour
     public void UnitContractConcle()
     {
         isUComtractOpen = false;
+        Debug.Log(isUComtractOpen);
         for (int d = 0; d < hunterList.Count; d++)
         {
             if (hunterList[d] != null)
@@ -1918,6 +1925,7 @@ public class GameManager : MonoBehaviour
     //던전창에서 나가기
     public void DungeonCancleButtonDown()
     {
+        isDLOpen = false;
         uiCamera.transform.position = new Vector3(0, 0, -10);
         upSide.SetActive(true);
         unitListNum.SetActive(true);
